@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springboot-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      # app.kubernetes.io/name: backend
+      app: backend
+  template:
+    metadata:
+      labels:
+        # app.kubernetes.io/name: backend
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: shaad98/minikube-k8s-practice:v2
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: springboot-service
+spec:
+  selector:
+    #  Same labels both file should have 'app.kubernetes.io/name' only then it will work
+    # Pod , Deployment , Service 
+    # app.kubernetes.io/name: backend
+    app: backend
+  ports:
+    - protocol: TCP
+      port: 9090
+      targetPort: 8080
