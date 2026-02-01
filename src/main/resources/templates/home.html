@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Docker / Minikube Practice</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: white;
+            text-align: center;
+            padding-top: 100px;
+        }
+        .box {
+            background: #1e293b;
+            padding: 30px;
+            width: 400px;
+            margin: auto;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.6);
+        }
+        h1 {
+            color: #38bdf8;
+        }
+        .hostname {
+            margin-top: 15px;
+            font-size: 18px;
+            color: #facc15;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="box">
+        <h1 th:text="${version}">Version 1</h1>
+        <div class="hostname">
+            Hostname: <span th:text="${hostname}">local-machine</span>
+        </div>
+    </div>
+
+</body>
+</html>
